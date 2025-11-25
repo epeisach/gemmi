@@ -104,6 +104,12 @@ select = "cp38-macosx_arm64"
 inherit.environment = "append"  # inherit MACOSX_DEPLOYMENT_TARGET
 environment.SKBUILD_CMAKE_ARGS = '-DBUILD_GEMMI_PROGRAM=OFF;-DINSTALL_DEV_FILES=OFF;-DBUILD_SHARED_LIBS=OFF;-DFETCH_ZLIB_NG=ON;-DGENERATE_STUBS=OFF'
 
+[[tool.cibuildwheel.overrides]]
+# We still require glibc 2.27 for centos-7
+select = "cp3*-*linux*" 
+manylinux-x86_64-image = "manylinux2014"
+
+
 [tool.pylint]
 basic.const-naming-style = "any"
 basic.variable-naming-style = "any"
